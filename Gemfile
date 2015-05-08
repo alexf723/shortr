@@ -53,6 +53,9 @@ gem "chartkick"
 # secret files
 gem 'figaro'
 
+# helper for EB
+gem 'elastic-beanstalk'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
