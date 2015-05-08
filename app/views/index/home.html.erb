@@ -1,0 +1,38 @@
+<div class='go_main'>
+	<h2>Go To Link</h2>
+	<%= form_tag("/index/expand", method: "get") do %>
+		<%= label_tag(:short, "Go to:") %>
+		<%= text_field_tag(:short) %>
+		<%= submit_tag("Go!") %>
+	<% end %>
+</div>
+	
+<div class='create'>
+	<h2>Create Short URL</h2>
+	<% if ( !params[:error].nil? and !params[:error].empty? ) %>
+		<div class='error'><h2>ERROR <%=params[:error]%></h2></div>
+	<% elsif defined? @short_url %>
+		<% short_link = request.base_url+"/"+@short_url.short_url %>
+		<p>URL <a href="<%=short_link%>"><%=short_link%></a> mapping to 
+			<a href="<%=@short_url.long_url%>"><%=@short_url.long_url%></a> has been created</p>
+		<p>Create another short url</p>
+	<% end %>
+	<%= form_tag("/index/home", method: "post", :class => 'basic_form') do %>
+	  <%= label_tag(:url, "URL:") %>
+	  <%= text_field_tag(:url, '', size: 51) %>
+	  <%= hidden_field_tag( :form_name, 'create') %>
+	<%= submit_tag("Create Short URL") %><br>
+	  <%= label_tag(:defined_short_url, "Optional Desired Short URL:") %>
+	  <%= text_field_tag(:defined_short_url) %>
+	  
+	<% end %>
+</div>
+
+<div class='get_stats'>
+<h2>Get Link Statistics</h2>
+	<%= form_tag("/stats/stats", method: "get") do %>
+	  <%= label_tag(:short, "Short URL:") %>
+	  <%= text_field_tag(:short) %>
+	  <%= submit_tag("Load Statistics") %>
+	<% end %>
+</div>

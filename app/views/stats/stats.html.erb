@@ -1,0 +1,41 @@
+<%= javascript_include_tag "//www.google.com/jsapi", "chartkick" %>
+<%= stylesheet_link_tag "stats", media: 'all' %>
+
+<div class='get_stats'>
+	<h2>Get Link Statistics</h2>
+		<%= form_tag("", method: "get") do %>
+		  <%= label_tag(:short, "Short URL:") %>
+		  <%= text_field_tag(:short) %>
+		  <%= submit_tag("Load Statistics") %>
+		<% end %>
+	</div>
+<%if !params[:short].nil? %>
+
+	<%if @clicks.size == 0 %>
+		<div><h2>No clicks for <%=params[:short]%></h2></div>
+	<% else %>
+		<div class='stat_header'>
+			<h2><%=@clicks.size%> total clicks for <%=params[:short]%></h2>
+		</div>
+
+		<div class='stat_left'>
+			<h2>Clicks by date</h2>
+			<%=pie_chart @date_stats %>
+		</div>
+
+		<div class='stat_right'>
+			<h2>Clicks by platform</h2>
+			<%=pie_chart @os_stats %>
+		</div>
+
+		<div class='stat_left'>
+			<h2>Clicks by browser</h2>
+			<%=pie_chart @browser_stats %>
+		</div>
+
+		<div class='stat_right'>
+			<h2>Clicks by country</h2>
+			<%=pie_chart @country_stats %>
+		</div>
+	<% end %>
+<% end %>

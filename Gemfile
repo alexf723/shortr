@@ -32,6 +32,27 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# AWS sdk 2.0
+gem 'aws-sdk', '~> 2'
+
+# support for encoding in base 62 a-zA-Z0-9
+gem 'base62'
+
+# support for activate record features without using a db
+gem 'activemodel'
+
+# map from ip to country
+gem 'geocoder'
+
+# get user agent data (browser, ip, etc)
+gem "useragent"
+
+# fancy schmancy charts
+gem "chartkick"
+
+# secret files
+gem 'figaro'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

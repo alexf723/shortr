@@ -7,6 +7,23 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div class="header">
+	<table width="100%">
+		<tr>
+			<td>
+				<h1 style="display:inline;">Shortr</h1>
+				<a href='/'>Home</a> | <a href='/'>Create</a> | <a href='/statistics/stats'>Statistics</a>
+			</td>
+			<td align="right">
+				<%= form_tag("/index/expand", method: "get", :class => 'header_form' ) do %>
+					<%= label_tag(:short, "Go to:") %>
+					<%= text_field_tag(:short) %>
+					<%= submit_tag("Go!") %>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+</div>
 
 <%= yield %>
 
