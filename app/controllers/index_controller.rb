@@ -4,7 +4,6 @@ class IndexController < ApplicationController
   
   def home
     
-    puts params[:form_name]
     if params[:form_name] == 'create'
       create( params ) 
     end
@@ -55,7 +54,7 @@ class IndexController < ApplicationController
         @short_url = Short_url.create_short_url( long_url )
       end
     rescue => e
-      params[:error] = e.to_s + ":" + e.backtrace.to_s
+      params[:error] = e.to_s 
     end
     
   end
