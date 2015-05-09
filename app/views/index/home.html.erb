@@ -10,12 +10,13 @@
 <div class='create'>
 	<h2>Create Short URL</h2>
 	<% if ( !params[:error].nil? and !params[:error].empty? ) %>
-		<div class='error'><h2>ERROR <%=params[:error]%></h2></div>
+		<div class='error'><h2><%=params[:error]%></h2></div>
 	<% elsif defined? @short_url %>
 		<% short_link = request.base_url+"/"+@short_url.short_url %>
-		<p>URL <a href="<%=short_link%>"><%=short_link%></a> mapping to 
+		<div class='create_success'>
+		<p>Short URL <a href="<%=short_link%>"><%=short_link%></a> mapping to 
 			<a href="<%=@short_url.long_url%>"><%=@short_url.long_url%></a> has been created</p>
-		<p>Create another short url</p>
+		<p>Create another short url</p></div>
 	<% end %>
 	<%= form_tag("/index/home", method: "post", :class => 'basic_form') do %>
 	  <%= label_tag(:url, "URL:") %>

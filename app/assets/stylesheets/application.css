@@ -3,6 +3,39 @@ body{
 	margin:0px;
 }
 
+a {
+    text-decoration: none;
+	color: #fff;
+}
+a:visited {
+	color: #fff; 
+}
+
+a.no_color_change_link:hover{
+    text-decoration: none;
+    color: #fff; 
+}
+a:hover {
+	text-decoration: underline; 
+	color: #aaa; 
+}
+
+.create_success {
+    display:block;
+    width: 100%;
+    text-align: center;
+}
+
+.create_success a {
+    text-decoration: none;
+    color: #000;
+}
+
+.create_success a:hover {
+    text-decoration: underline;
+    color: #888;
+}
+
 form {
     display:block;
     width: 100%;
@@ -26,20 +59,21 @@ div.header {
     border-bottom:2px solid #CCC;
     width:100%;
     margin:0px auto;
+    color: white;
 }
 
 div.links {
     margin-left: 25px;
     float:left;
     position: relative;
-    	top: 15%;
+    top: 15%;
     
 }
 div.header_form{
     margin-right: 25px;
     float:right;
     position: relative;
-    	top: 30%;
+    top: 30%;
 }
 
 h2 {	
@@ -49,6 +83,8 @@ h2 {
 	padding: 5px;
 	text-align: center;
 	background-color: #bbbbbb;
+	border-bottom:1px solid #777;
+	border-right:1px solid #777;
 }
 
 div.error h2 {	
