@@ -1,5 +1,6 @@
 body{
 	font-family: Verdana, Geneva, sans-serif;
+	margin:0px;
 }
 
 form {
@@ -18,7 +19,27 @@ div {
 }
 
 div.header {
-	background-color: #aaaaff;
+    padding-top: 10px;
+    padding-left: 10px;
+    height:75px;
+    background:#4682b4;
+    border-bottom:2px solid #CCC;
+    width:100%;
+    margin:0px auto;
+}
+
+div.links {
+    margin-left: 25px;
+    float:left;
+    position: relative;
+    	top: 15%;
+    
+}
+div.header_form{
+    margin-right: 25px;
+    float:right;
+    position: relative;
+    	top: 30%;
 }
 
 h2 {	
