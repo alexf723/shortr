@@ -3,7 +3,7 @@ require "click"
 require 'digest/sha1'
 require 'short_url'
 require "useragent"
-require "Geocoder"
+require "geocoder"
 require 'uri'
 
 class Click
