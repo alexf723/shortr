@@ -38,7 +38,7 @@
 	  <%= text_field_tag(:url, '', size: 51) %>
 	  <%= hidden_field_tag( :form_name, 'create') %>
 	<%= submit_tag("Create Short URL") %><br>
-	  <%= label_tag(:defined_short_url, "Optional Desired Short URL:") %>
+	  <%= label_tag(:defined_short_url, "Optional Desired Short URL (letters and numbers only):") %>
 	  <%= text_field_tag(:defined_short_url) %>
 	  
 	<% end %>
