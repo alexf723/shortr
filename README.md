@@ -7,16 +7,16 @@ Rails was chosen based on the fact that I was comfortable with ruby (though real
 
 # Controllers
 Shortr has a basic design.  There are 2 controllers: index and stats.  Index has 5 actions: 
-*Home - Display the home page
-*Expand - Show the long url for this short url
-*Go - Go to the long url for the short url
-*Create - Create a short url either with a random short url or pre-defined one
-*Not_Found - The action if a short url is not found
+* Home - Display the home page
+* Expand - Show the long url for this short url
+* Go - Go to the long url for the short url
+* Create - Create a short url either with a random short url or pre-defined one
+* Not_Found - The action if a short url is not found
 
 Stats has 1 action:
-*Stats - Show statistics for this URL
+* Stats - Show statistics for this URL
 
-Going to shortr-rayidchvfk.elasticbeanstalk.com will load the homepage, but going to shortr-rayidchvfk.elasticbeanstalk.com/SOMETHING will take you to the SOMETHING long url assuming it exists.  Going to shortr-rayidchvfk.elasticbeanstalk.com/stats/SOMETHING will load statistics for that short url if it exists.
+Going to the main will load the homepage, but going to URL/SOMETHING will take you to the SOMETHING long url assuming it exists.  Going to URL/stats/SOMETHING will load statistics for that short url if it exists.
 
 # Models and storage
 There are 2 models, short_url and click.  Both of them are stored in dynamoDB.  DynamoDB was chosen because:
@@ -54,10 +54,10 @@ Unfortunately I was planning to use fake_dynamo gem for testing the dynamoDB cal
 
 There are many other features I discussed with Marcin to implement, but I deemed them out of scope for this project
 
-*User accounts - this would allow a user to end date a short url, and see all of their short urls.  The schema right now supports this, but not implemented.
-*Raw backend reporting - Using a regular SQL provider would make this easier, but not impossible with dynamo, but de-scoped
-*Verifying the link is valid - I do some basic validation (using the Adressable gem) but work could be done to verify the URL exists before creating the short url
-*Deduping short urls - The system supports this (lookup by long url) but does not dedupe new short urls.  This is debatable if it is wanted, for example a user might want a unique url to measure statistics for that url only and not other short urls to that long url.
+* User accounts - this would allow a user to end date a short url, and see all of their short urls.  The schema right now supports this, but not implemented.
+* Raw backend reporting - Using a regular SQL provider would make this easier, but not impossible with dynamo, but de-scoped
+* Verifying the link is valid - I do some basic validation (using the Adressable gem) but work could be done to verify the URL exists before creating the short url
+* Deduping short urls - The system supports this (lookup by long url) but does not dedupe new short urls.  This is debatable if it is wanted, for example a user might want a unique url to measure statistics for that url only and not other short urls to that long url.
 
 # Lessons Learned
 
