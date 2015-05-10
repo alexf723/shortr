@@ -1,22 +1,37 @@
 <div class='go_main'>
 	<h2>Go To Link</h2>
-	<%= form_tag("/index/expand", method: "get") do %>
+	<%= form_tag("/index/go", method: "get") do %>
 		<%= label_tag(:short, "Go to:") %>
 		<%= text_field_tag(:short) %>
 		<%= submit_tag("Go!") %>
 	<% end %>
 </div>
+
+<div class='expand_main'>
+	<h2>Expand this short url</h2>
+	<% if ( !params[:error_expand].nil? and !params[:error_expand].empty? ) %>
+		<div class='error'><h2><%=params[:error_create]%></div>
+	<% elsif !params[:long_url].nil? and !params[:long_url].empty? %>
+		<div class='success'><%=params[:short_url]%> maps to <a href='<%=params[:long_url]%>'><%=params[:long_url]%></a></div>
+	<% end %>
+	<%= form_tag("/index/home", method: "get") do %>
+	<%= hidden_field_tag( :form_name, 'expand') %>
+		<%= label_tag(:short, "Short URL:") %>
+		<%= text_field_tag(:short) %>
+		<%= submit_tag("Show") %>
+	<% end %>
+</div>
 	
 <div class='create'>
 	<h2>Create Short URL</h2>
-	<% if ( !params[:error].nil? and !params[:error].empty? ) %>
-		<div class='error'><h2><%=params[:error]%></h2></div>
+	<% if ( !params[:error_create].nil? and !params[:error_create].empty? ) %>
+		<div class='error'><h2><%=params[:error_create]%></h2></div>
 	<% elsif defined? @short_url %>
 		<% short_link = request.base_url+"/"+@short_url.short_url %>
-		<div class='create_success'>
-		<p>Short URL <a href="<%=short_link%>"><%=short_link%></a> mapping to 
-			<a href="<%=@short_url.long_url%>"><%=@short_url.long_url%></a> has been created</p>
-		<p>Create another short url</p></div>
+		<div class='success'>
+		Short URL <a href="<%=short_link%>"><%=short_link%></a> mapping to 
+			<a href="<%=@short_url.long_url%>"><%=@short_url.long_url%></a> has been created</div>
+		<div class='success'>Create another short url</div>
 	<% end %>
 	<%= form_tag("/index/home", method: "post", :class => 'basic_form') do %>
 	  <%= label_tag(:url, "URL:") %>

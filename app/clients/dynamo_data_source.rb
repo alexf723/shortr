@@ -16,6 +16,7 @@ class Dynamo_data_source < Data_source
   end
   
   def get_primary_key( table_name, key, value )
+    puts "looking up key:#{key} value:#{value} in table:#{table_name}"
     @dynamodb.get_item(
       table_name: table_name,
       key: { key => value }

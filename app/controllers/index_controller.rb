@@ -6,19 +6,15 @@ class IndexController < ApplicationController
     
     if params[:form_name] == 'create'
       create( params ) 
+    elsif params[:form_name] == 'expand'
+      expand( params ) 
     end
     
   end
   
-  def expand
+  def go
     
-    short = params[:short]
-    
-    # if they pasted in the whole short url, and not just the key
-    # pull out just the key
-    if short.index(request.base_url+"/") == 0
-      short = short[(request.base_url.length+1),short.length]
-    end
+    short = get_short_url params[:short]
     
     @short_url = Short_url.get_from_short_url( short ) 
     if @short_url.nil? or @short_url.long_url.nil?
@@ -30,6 +26,19 @@ class IndexController < ApplicationController
     
   end
   
+  def expand params
+    
+    short = get_short_url params[:short]
+    params[:short_url] = short
+    short_url = Short_url.get_from_short_url( short )
+    if short_url.nil? or short_url.long_url.nil?
+      params[:error_expand] = short + " is not found"
+    else
+      params[:long_url] =  short_url.long_url
+    end
+    
+  end
+
   def not_found
     # nothing needed
   end
@@ -41,7 +50,7 @@ class IndexController < ApplicationController
     
     # check if the URL is valid
     if !is_valid_url( long_url )
-      params[:error] = "Invalid URL #{long_url}"
+      params[:error_create] = "Invalid URL #{long_url}"
       return
     else
       long_url = get_clean_url long_url
@@ -54,12 +63,10 @@ class IndexController < ApplicationController
         @short_url = Short_url.create_short_url( long_url )
       end
     rescue => e
-      params[:error] = e.to_s 
+      params[:error_create] = e.to_s 
     end
     
   end
-  
-  #private
   
   def is_valid_url url
     
@@ -86,6 +93,19 @@ class IndexController < ApplicationController
     else
       return  "http://" + url 
     end
+  end
+  
+  # if they pasted in the whole short url, and not just the key
+  # pull out just the key
+  def get_short_url short
+    
+    puts short
+    if short.index(request.base_url+"/") == 0
+      short[(request.base_url.length+1),short.length]
+    else
+      short
+    end
+    
   end
   
 end

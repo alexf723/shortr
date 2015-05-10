@@ -29,6 +29,10 @@ class Short_url
     create_internal_short_url( long_url, create_unique_key )
   end
   
+  def self.valid_short_url( short_url )
+    return ( short_url == short_url[/[a-zA-Z0-9]+/] )
+  end
+  
   private 
   
   def self.create_internal_short_url( long_url, short_url, owner = 'System' ) 
@@ -51,7 +55,4 @@ class Short_url
     raise "Failure to create unique key"
   end
  
-  def self.valid_short_url( short_url )
-    return ( short_url == short_url[/[a-zA-Z0-9]+/] )
-  end
 end

@@ -24,8 +24,6 @@ class StatsController < ApplicationController
     
   end
   
-  private 
-  
   def add_count_to_hash( hash, key )
     if hash.has_key? key
       hash[key] = hash[key] + 1

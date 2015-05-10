@@ -20,18 +20,18 @@ a:hover {
 	color: #aaa; 
 }
 
-.create_success {
+.success {
     display:block;
     width: 100%;
     text-align: center;
 }
 
-.create_success a {
+.success a {
     text-decoration: none;
     color: #000;
 }
 
-.create_success a:hover {
+.success a:hover {
     text-decoration: underline;
     color: #888;
 }
@@ -60,6 +60,13 @@ div.header {
     width:100%;
     margin:0px auto;
     color: white;
+}
+
+div.go_fail {
+    display:block;
+    width:100%;
+    align: center;
+    text-align: center;
 }
 
 div.links {
